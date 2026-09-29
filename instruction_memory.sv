@@ -29,7 +29,7 @@ module instruction_memory #(
 	always_comb begin
 		if(imem_req) begin
 			imem_data=  {
-				mem[imem_addr], mem[imem_addr+1], mem[imem_req+2], mem[imem_addr+3] };
+				mem[imem_addr], mem[imem_addr+1], mem[imem_addr+2], mem[imem_addr+3] };
 		end
 		else begin
 			imem_data=32'd0;
