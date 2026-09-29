@@ -26,6 +26,19 @@ module register_file (
   logic [31:0] regs [0:31];
 
    // Enter your code
+always_ff @(posedge clk, negedge reset_n) begin
+if(!reset_n) begin
+integer i;
+for(i = 0; i < 32; i = i+1)
+regs[i]<=32'd0;
+end
+else if (rf_wr_en && (rd_addr != 5'd0)) begin
+regs[rd_addr] <= wr_data;
+end
+end
+
+assign rs1_data = regs[rs1_addr];
+assign rs2_data = regs[rs2_addr];
 
 endmodule
 

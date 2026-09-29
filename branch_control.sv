@@ -17,5 +17,26 @@ module branch_control (
 );
  
   // Enter your code
+logic signed [31:0] a_signed, b_signed;
+assign a_signed = opr_a;
+assign b_signed = opr_b;
+
+logic taken;
+
+always_comb begin
+taken=1'b0;
+
+case(funct3)
+B_BEQ  : taken = (opr_a == opr_b);
+B_BNE  : taken = (opr_a != opr_b); 
+B_BLT  : taken = (a_signed != b_signed);
+B_BGE  : taken = (a_signed != b_signed);
+B_BLTU  : taken = (opr_a < opr_b);
+B_BGEU  : taken = (opr_a >= opr_b);
+endcase
+
+end
+
+assign branch_taken = is_b_type & taken;
 
 endmodule

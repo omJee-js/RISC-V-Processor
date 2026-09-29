@@ -16,7 +16,19 @@ module fetch (
 );
 
    // Enter your code
+   logic req_reg;
 
+   always_ff @(posedge clk or negedge reset_n) begin
+   if(!reset_n)
+	req_reg<=1'b0;
+   else
+	req_reg<=1'b1;
+   end
+   
+   assign imem_req=req_reg;
+   assign imem_addr=pc;
+   assign instruction=imem_data;
+   
 endmodule
 
 
